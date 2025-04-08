@@ -24,8 +24,8 @@ public partial class WpfContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite($"Data Source={"D:\\WPFSQLite\\WPFSQLite\\wpf.db"}");
-
+        => optionsBuilder.UseSqlite($"Data Source={Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wpf.db")}");
+// иногда не работает метод нахождения пути к БД, поменяйте на свой путь, Data Source = {"Ваш_путь_к_БД"}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
