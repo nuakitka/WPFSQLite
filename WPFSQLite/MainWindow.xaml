@@ -1,0 +1,46 @@
+﻿<Window x:Class="WPFSQLite.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFSQLite"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="UserListBox" ItemsSource="{Binding Users}" Grid.Row="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding User.FullName, StringFormat='Name: {0}'}"/>
+                            <TextBlock Text="{Binding User.Salary, StringFormat='   Salary: {0}'}"/>
+                            <TextBlock Text="{Binding User.cashPerDay, StringFormat='   Per day {0}'}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox x:Name="CategotyComboBox" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" Width="100" SelectionChanged="CategotyComboBox_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NameCategory}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBox x:Name="CashTextBox" Text="{Binding Cash}" Width="100"/>
+                            <Button x:Name="AddCashButton" Content="Добавить" Click="AddCashButton_Click" Width="100"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBox x:Name="FullNameTextBox" Width="150"/>
+            <TextBox x:Name="SalaryTextBox" Width="150"/>
+            <Button x:Name="AddButton" Content="Добавить" Grid.Row="1" Click="AddButton_Click" Width="250"/>
+            <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Width="250"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
